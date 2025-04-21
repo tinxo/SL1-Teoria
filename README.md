@@ -1,11 +1,11 @@
-# SL1-Teoria-2024
+# SL1-Teoria
 
 Repositorio de los ejemplos o ejercicios utilizados en las sesiones de teoría.  
 Cátedra: Seminario de Lenguajes I  
-Dictado: 2024 
+Dictado: 2024 | 2025
 
 ## Lista de contenidos
 
-Cada sesión de teoría tiene asociada una carpeta, dentro se encuentra el código desarrollado en la misma:
-* [Sesión #2](https://github.com/tinxo/SL1-Teoria-2024/tree/main/C2-15042024) - 15/04 - Manejo de variables y tipos de datos (consola)
-* [Sesión #3](https://github.com/tinxo/SL1-Teoria-2024/tree/main/C3-22042024) - 21/04 - Introducción al manejo de interfaces visuales (gui)
+En este repositorio se van a ir registrando los ejemplos / proyectos que son desarrollados en las clases de teoría.
+
+En la carpeta / directorio **2024** van a encontrar lo que fue desarrollado en el dictado de ese ciclo lectivo.
