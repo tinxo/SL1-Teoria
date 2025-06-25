@@ -1,0 +1,86 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Alumno\\Desktop\\SL1\\Escuchify\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DD2AE72C-B09C-45F5-84CC-F54C9172E7AE}|Escuchify\\Escuchify.csproj|c:\\users\\alumno\\desktop\\sl1\\escuchify\\escuchify\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD2AE72C-B09C-45F5-84CC-F54C9172E7AE}|Escuchify\\Escuchify.csproj|solutionrelative:escuchify\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD2AE72C-B09C-45F5-84CC-F54C9172E7AE}|Escuchify\\Escuchify.csproj|c:\\users\\alumno\\desktop\\sl1\\escuchify\\escuchify\\modelos\\artista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD2AE72C-B09C-45F5-84CC-F54C9172E7AE}|Escuchify\\Escuchify.csproj|solutionrelative:escuchify\\modelos\\artista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD2AE72C-B09C-45F5-84CC-F54C9172E7AE}|Escuchify\\Escuchify.csproj|c:\\users\\alumno\\desktop\\sl1\\escuchify\\escuchify\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{DD2AE72C-B09C-45F5-84CC-F54C9172E7AE}|Escuchify\\Escuchify.csproj|solutionrelative:escuchify\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD2AE72C-B09C-45F5-84CC-F54C9172E7AE}|Escuchify\\Escuchify.csproj|c:\\users\\alumno\\desktop\\sl1\\escuchify\\escuchify\\modelos\\disco.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD2AE72C-B09C-45F5-84CC-F54C9172E7AE}|Escuchify\\Escuchify.csproj|solutionrelative:escuchify\\modelos\\disco.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 100,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Alumno\\Desktop\\SL1\\Escuchify\\Escuchify\\Form1.cs",
+              "RelativeDocumentMoniker": "Escuchify\\Form1.cs",
+              "ToolTip": "C:\\Users\\Alumno\\Desktop\\SL1\\Escuchify\\Escuchify\\Form1.cs",
+              "RelativeToolTip": "Escuchify\\Form1.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAowCEAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T18:30:29.691Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form1.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Alumno\\Desktop\\SL1\\Escuchify\\Escuchify\\Form1.cs",
+              "RelativeDocumentMoniker": "Escuchify\\Form1.cs",
+              "ToolTip": "C:\\Users\\Alumno\\Desktop\\SL1\\Escuchify\\Escuchify\\Form1.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Escuchify\\Form1.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T18:26:23.384Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Disco.cs",
+              "DocumentMoniker": "C:\\Users\\Alumno\\Desktop\\SL1\\Escuchify\\Escuchify\\Modelos\\Disco.cs",
+              "RelativeDocumentMoniker": "Escuchify\\Modelos\\Disco.cs",
+              "ToolTip": "C:\\Users\\Alumno\\Desktop\\SL1\\Escuchify\\Escuchify\\Modelos\\Disco.cs",
+              "RelativeToolTip": "Escuchify\\Modelos\\Disco.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwBwAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T18:05:17.145Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Artista.cs",
+              "DocumentMoniker": "C:\\Users\\Alumno\\Desktop\\SL1\\Escuchify\\Escuchify\\Modelos\\Artista.cs",
+              "RelativeDocumentMoniker": "Escuchify\\Modelos\\Artista.cs",
+              "ToolTip": "C:\\Users\\Alumno\\Desktop\\SL1\\Escuchify\\Escuchify\\Modelos\\Artista.cs",
+              "RelativeToolTip": "Escuchify\\Modelos\\Artista.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAtwCEAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T17:44:13.533Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

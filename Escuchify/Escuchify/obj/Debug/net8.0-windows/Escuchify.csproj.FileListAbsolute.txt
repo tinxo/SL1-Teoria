@@ -1,0 +1,16 @@
+C:\Users\Alumno\Desktop\SL1\Escuchify\Escuchify\bin\Debug\net8.0-windows\Escuchify.exe
+C:\Users\Alumno\Desktop\SL1\Escuchify\Escuchify\bin\Debug\net8.0-windows\Escuchify.deps.json
+C:\Users\Alumno\Desktop\SL1\Escuchify\Escuchify\bin\Debug\net8.0-windows\Escuchify.runtimeconfig.json
+C:\Users\Alumno\Desktop\SL1\Escuchify\Escuchify\bin\Debug\net8.0-windows\Escuchify.dll
+C:\Users\Alumno\Desktop\SL1\Escuchify\Escuchify\bin\Debug\net8.0-windows\Escuchify.pdb
+C:\Users\Alumno\Desktop\SL1\Escuchify\Escuchify\obj\Debug\net8.0-windows\Escuchify.Form1.resources
+C:\Users\Alumno\Desktop\SL1\Escuchify\Escuchify\obj\Debug\net8.0-windows\Escuchify.csproj.GenerateResource.cache
+C:\Users\Alumno\Desktop\SL1\Escuchify\Escuchify\obj\Debug\net8.0-windows\Escuchify.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alumno\Desktop\SL1\Escuchify\Escuchify\obj\Debug\net8.0-windows\Escuchify.AssemblyInfoInputs.cache
+C:\Users\Alumno\Desktop\SL1\Escuchify\Escuchify\obj\Debug\net8.0-windows\Escuchify.AssemblyInfo.cs
+C:\Users\Alumno\Desktop\SL1\Escuchify\Escuchify\obj\Debug\net8.0-windows\Escuchify.csproj.CoreCompileInputs.cache
+C:\Users\Alumno\Desktop\SL1\Escuchify\Escuchify\obj\Debug\net8.0-windows\Escuchify.dll
+C:\Users\Alumno\Desktop\SL1\Escuchify\Escuchify\obj\Debug\net8.0-windows\refint\Escuchify.dll
+C:\Users\Alumno\Desktop\SL1\Escuchify\Escuchify\obj\Debug\net8.0-windows\Escuchify.pdb
+C:\Users\Alumno\Desktop\SL1\Escuchify\Escuchify\obj\Debug\net8.0-windows\Escuchify.genruntimeconfig.cache
+C:\Users\Alumno\Desktop\SL1\Escuchify\Escuchify\obj\Debug\net8.0-windows\ref\Escuchify.dll
