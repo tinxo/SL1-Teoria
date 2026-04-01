@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Escuchify", "Escuchify.csproj", "{B3285BAA-2E47-026F-7FEC-B1313050C491}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B3285BAA-2E47-026F-7FEC-B1313050C491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3285BAA-2E47-026F-7FEC-B1313050C491}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3285BAA-2E47-026F-7FEC-B1313050C491}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3285BAA-2E47-026F-7FEC-B1313050C491}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {991C442E-6D6F-4C8F-B726-0716B68530FA}
+	EndGlobalSection
+EndGlobal

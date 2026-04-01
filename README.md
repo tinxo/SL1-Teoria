@@ -2,7 +2,7 @@
 
 Repositorio de los ejemplos o ejercicios utilizados en las sesiones de teoría.  
 Cátedra: Seminario de Lenguajes I  
-Dictado: 2024 | 2025
+Dictado: 2024 | 2025 | 2026
 
 ## Lista de contenidos
 
