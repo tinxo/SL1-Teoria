@@ -1,6 +1,6 @@
 ﻿namespace App_Checkin
 {
-    partial class Form1
+    partial class FrmPasajero
     {
         /// <summary>
         ///  Required designer variable.
@@ -44,6 +44,11 @@
             rdbInternacional = new RadioButton();
             cbxTipoTarifa = new ComboBox();
             btnProcesar = new Button();
+            grpDatosPax = new GroupBox();
+            lblDatosPax = new Label();
+            btnReiniciar = new Button();
+            btnEquipaje = new Button();
+            grpDatosPax.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -188,13 +193,56 @@
             btnProcesar.TabIndex = 15;
             btnProcesar.Text = "Procesar";
             btnProcesar.UseVisualStyleBackColor = true;
-            btnProcesar.Click += btnProcesar_Click;
+            btnProcesar.Click += evetoClickBtnProcesar;
             // 
-            // Form1
+            // grpDatosPax
+            // 
+            grpDatosPax.Controls.Add(lblDatosPax);
+            grpDatosPax.Location = new Point(38, 388);
+            grpDatosPax.Name = "grpDatosPax";
+            grpDatosPax.Size = new Size(463, 132);
+            grpDatosPax.TabIndex = 16;
+            grpDatosPax.TabStop = false;
+            grpDatosPax.Text = "Datos del pax:";
+            grpDatosPax.Visible = false;
+            // 
+            // lblDatosPax
+            // 
+            lblDatosPax.AutoSize = true;
+            lblDatosPax.Location = new Point(17, 27);
+            lblDatosPax.Name = "lblDatosPax";
+            lblDatosPax.Size = new Size(59, 25);
+            lblDatosPax.TabIndex = 0;
+            lblDatosPax.Text = "label9";
+            // 
+            // btnReiniciar
+            // 
+            btnReiniciar.Location = new Point(533, 403);
+            btnReiniciar.Name = "btnReiniciar";
+            btnReiniciar.Size = new Size(217, 48);
+            btnReiniciar.TabIndex = 17;
+            btnReiniciar.Text = "Reiniciar";
+            btnReiniciar.UseVisualStyleBackColor = true;
+            btnReiniciar.Click += btnReiniciar_Click;
+            // 
+            // btnEquipaje
+            // 
+            btnEquipaje.Location = new Point(533, 472);
+            btnEquipaje.Name = "btnEquipaje";
+            btnEquipaje.Size = new Size(217, 48);
+            btnEquipaje.TabIndex = 18;
+            btnEquipaje.Text = "Gestionar equipaje";
+            btnEquipaje.UseVisualStyleBackColor = true;
+            btnEquipaje.Click += btnEquipaje_Click;
+            // 
+            // FrmPasajero
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(775, 562);
+            Controls.Add(btnEquipaje);
+            Controls.Add(btnReiniciar);
+            Controls.Add(grpDatosPax);
             Controls.Add(btnProcesar);
             Controls.Add(cbxTipoTarifa);
             Controls.Add(rdbInternacional);
@@ -213,8 +261,10 @@
             Controls.Add(label1);
             Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Margin = new Padding(4);
-            Name = "Form1";
+            Name = "FrmPasajero";
             Text = "Aerolineas Argentinas - Aplicación de Check-In (v 2026.1)";
+            grpDatosPax.ResumeLayout(false);
+            grpDatosPax.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -237,5 +287,9 @@
         private RadioButton rdbInternacional;
         private ComboBox cbxTipoTarifa;
         private Button btnProcesar;
+        private GroupBox grpDatosPax;
+        private Label lblDatosPax;
+        private Button btnReiniciar;
+        private Button btnEquipaje;
     }
 }
