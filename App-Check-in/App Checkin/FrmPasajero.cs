@@ -1,8 +1,12 @@
+using App_Checkin.Modelos;
+
 namespace App_Checkin
 {
     public partial class FrmPasajero : Form
     {
         // TODO: mover acá las variables
+        Pasajero unPax;
+
         public FrmPasajero()
         {
             InitializeComponent();
@@ -10,10 +14,17 @@ namespace App_Checkin
 
         private void evetoClickBtnProcesar(object sender, EventArgs e)
         {
-            string nombre = txtNombre.Text;
-            string apellido = txtApellido.Text;
-            string documento = txtDocumento.Text;
-            string pasajeroFrecuente = txtPaxFrecuente.Text;
+            // Se obtienen los datos del pasajero
+            unPax = new Pasajero(
+                txtNombre.Text,
+                txtApellido.Text,
+                txtDocumento.Text,
+                txtPaxFrecuente.Text
+            );
+            // Usamos la clase Pasajeros para guardar los datos
+
+
+
             string tipoVuelo; // "N" o "I"
             // TODO: Agregar verificación para que sí o sí uno tenga que estar seleccionado
             if (rdbInternacional.Checked)
@@ -41,8 +52,8 @@ namespace App_Checkin
             // Se pasa a visible el área para mostrar los resultados
             this.grpDatosPax.Visible = true;
             // Se cargan los resultados (datos del pasajero)
-            this.lblDatosPax.Text = $"{apellido}, {nombre}:" +
-                $"\n DNI: {documento} - NPxFrecuente: {pasajeroFrecuente}" +
+            this.lblDatosPax.Text = $"{unPax.Apellido}, {unPax.Nombre}:" +
+                $"\n DNI: {unPax.Documento} - NPxFrecuente: {unPax.PasajeroFrecuente}" +
                 $"\n Vuelo: {tipoVuelo} con la tarifa {tipoTarifa}";
         }
 
