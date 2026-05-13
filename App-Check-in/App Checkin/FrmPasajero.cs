@@ -6,6 +6,7 @@ namespace App_Checkin
     {
         // TODO: mover acá las variables
         Pasajero unPax;
+        Pasaje ticket;
 
         public FrmPasajero()
         {
@@ -42,6 +43,7 @@ namespace App_Checkin
             }
             // Agregar verificación para que sí o sí uno tenga que estar seleccionado
             string nroVuelo = "AR1766";
+            ticket = new Pasaje(tipoVuelo, tipoTarifa, nroVuelo)
 
             // Informar datos cargados
             /*MessageBox.Show($"Datos del pasajero: +" +
@@ -72,6 +74,7 @@ namespace App_Checkin
 
         private void btnEquipaje_Click(object sender, EventArgs e)
         {
+            /**
             String tipoVuelo = String.Empty;
             if (rdbInternacional.Checked)
             {
@@ -85,8 +88,8 @@ namespace App_Checkin
             if (cbxTipoTarifa.SelectedItem != null)
             {
                 tipoTarifa = cbxTipoTarifa.SelectedItem.ToString();
-            }
-            if ((tipoTarifa == String.Empty) || (tipoVuelo == String.Empty)) {
+            }**/
+            if ((ticket.TipoTarifa == String.Empty) || (ticket.TipoVuelo == String.Empty)) {
                 // No tiene que abrir el formulario
                 MessageBox.Show("Para cargar el equipaje se requiere el tipo de vuelo y tipo de tarifa.",
                     "Error",
@@ -95,7 +98,7 @@ namespace App_Checkin
             } else
             {
                 FrmEquipaje frmEquipaje = new FrmEquipaje();
-                frmEquipaje.configurarFormulario(tipoVuelo, tipoTarifa);
+                frmEquipaje.configurarFormulario(ticket);
                 frmEquipaje.ShowDialog();
             }
             

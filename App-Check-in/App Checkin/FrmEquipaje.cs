@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App_Checkin.Modelos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +11,8 @@ namespace App_Checkin
 {
     public partial class FrmEquipaje : Form
     {
-        private String _tipoVuelo = String.Empty;
+        //private String _tipoVuelo = String.Empty;
+        private Pasaje ticket;
         public FrmEquipaje()
         {
             InitializeComponent();
@@ -34,9 +36,11 @@ namespace App_Checkin
             return cantidadItems;
         }
 
-        public void configurarFormulario(String tipoVuelo, String tipoTarifa)
+        public void configurarFormulario(Pasaje unTicket)
+            // TODO: ENVIAR al pasajero para poder después asignarle cada item de equipaje
         {
-            int cantidadEquipaje = obtenerCantidadEquipaje(tipoTarifa);
+            ticket = unTicket;
+            int cantidadEquipaje = obtenerCantidadEquipaje(ticket.TipoTarifa);
             if (cantidadEquipaje == 1)
             {
                 this.grpEquipaje2.Visible = false;
@@ -46,10 +50,10 @@ namespace App_Checkin
             {
                 this.grpEquipaje3.Visible = false;
             }
-            _tipoVuelo = tipoVuelo;
+            //_tipoVuelo = tipoVuelo;
         }
 
-        private bool verificarPesoEquipaje(double pesoEquipaje, int nroItem, string tipoVuelo)
+        private bool verificarPesoEquipaje(double pesoEquipaje, int nroItem)
         {
             double pesoLimiteNacional = 0.0;
             double pesoLimiteInternacional = 0.0;
@@ -65,11 +69,11 @@ namespace App_Checkin
                 pesoLimiteNacional = 15.0;
                 pesoLimiteInternacional = 23.0;
             }
-            if ((tipoVuelo.ToUpper() == "N") && (pesoEquipaje > pesoLimiteNacional))
+            if ((ticket.TipoVuelo.ToUpper() == "N") && (pesoEquipaje > pesoLimiteNacional))
             {
                 return false;
             }
-            else if ((tipoVuelo.ToUpper() == "I") && (pesoEquipaje > pesoLimiteInternacional))
+            else if ((ticket.TipoVuelo.ToUpper() == "I") && (pesoEquipaje > pesoLimiteInternacional))
             {
                 return false;
             }
@@ -86,23 +90,26 @@ namespace App_Checkin
             bool resultado1 = false;
             if (pesoEquipaje1 > 0.0)
             {
-                resultado1 = verificarPesoEquipaje(pesoEquipaje1, 1, _tipoVuelo);
+                resultado1 = verificarPesoEquipaje(pesoEquipaje1, 1);
                 if (resultado1)
                 {
                     this.grpEquipaje1.BackColor = Color.Green;
+                    // TODO: este objeto tiene que ir directo a la colección del
+                    // pasajero con el que se está operando
+                    Equipaje elemento1 = new Equipaje(pesoEquipaje1, "1");
                 }
             }
             double pesoEquipaje2 = (double)this.numPeso2.Value;
             bool resultado2 = false;
             if (pesoEquipaje2 > 0.0)
             {
-                resultado2 = verificarPesoEquipaje(pesoEquipaje2, 2, _tipoVuelo);
+                resultado2 = verificarPesoEquipaje(pesoEquipaje2, 2);
             }
             double pesoEquipaje3 = (double)this.numPeso3.Value;
             bool resultado3 = false;
             if (pesoEquipaje3 > 0.0)
             {
-                resultado3 = verificarPesoEquipaje(pesoEquipaje3, 3, _tipoVuelo);
+                resultado3 = verificarPesoEquipaje(pesoEquipaje3, 3);
             }
             // TODO: mejorar la lógica
             if ((!resultado1 && !resultado2) && (!resultado3))

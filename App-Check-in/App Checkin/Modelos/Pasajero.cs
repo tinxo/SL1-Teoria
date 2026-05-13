@@ -11,6 +11,7 @@ namespace App_Checkin.Modelos
         private string _apellido;
         private string _documento;
         private string _pasajeroFrecuente;
+        private List<Equipaje> _equipajes = new List<Equipaje>();
 
 
         // Definición del constructor
@@ -30,7 +31,7 @@ namespace App_Checkin.Modelos
         {
             get { return _nombre; }
             set {
-                if (_nombre != String.Empty) { 
+                if (value != String.Empty) { 
                     _nombre = value;
                 }
             }
@@ -41,7 +42,7 @@ namespace App_Checkin.Modelos
             get { return _apellido; }
             set {
                 // Validación para que no se pueda asignar un valor vacío
-                if (_apellido != String.Empty) { 
+                if (value != String.Empty) { 
                     _apellido = value;
                 }
             }
@@ -50,6 +51,16 @@ namespace App_Checkin.Modelos
         public string Documento { get; set; }
 
         public string PasajeroFrecuente { get; set; }
+
+        public List<Equipaje> getEquipajes()
+        {
+            return _equipajes;
+        }
+
+        public void agregarEquipaje(Equipaje unEquipaje)
+        {
+            _equipajes.Add(unEquipaje);
+        }
 
         }
 }
