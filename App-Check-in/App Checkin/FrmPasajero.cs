@@ -15,6 +15,16 @@ namespace App_Checkin
 
         private void evetoClickBtnProcesar(object sender, EventArgs e)
         {
+            if ((txtNombre.Text == String.Empty) || 
+                (txtApellido.Text == String.Empty) ||
+                (txtDocumento.Text == String.Empty))
+            {
+                MessageBox.Show("Los campos del formulario no pueden estar vacíos.",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // TODO: falta algo de feedback visual para indicar qué campo tiene problemas
+                return;
+            }
+            
             // Se obtienen los datos del pasajero
             unPax = new Pasajero(
                 txtNombre.Text,
@@ -23,8 +33,6 @@ namespace App_Checkin
                 txtPaxFrecuente.Text
             );
             // Usamos la clase Pasajeros para guardar los datos
-
-
 
             string tipoVuelo; // "N" o "I"
             // TODO: Agregar verificación para que sí o sí uno tenga que estar seleccionado
@@ -37,13 +45,13 @@ namespace App_Checkin
                 tipoVuelo = "N";
             }
             string tipoTarifa = String.Empty;
+            // TODO: Agregar verificación para que sí o sí uno tenga que estar seleccionado
             if (cbxTipoTarifa.SelectedItem != null)
             {
                 tipoTarifa = cbxTipoTarifa.SelectedItem.ToString();
             }
-            // Agregar verificación para que sí o sí uno tenga que estar seleccionado
             string nroVuelo = "AR1766";
-            ticket = new Pasaje(tipoVuelo, tipoTarifa, nroVuelo)
+            ticket = new Pasaje(tipoVuelo, tipoTarifa, nroVuelo);
 
             // Informar datos cargados
             /*MessageBox.Show($"Datos del pasajero: +" +

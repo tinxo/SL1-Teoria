@@ -15,7 +15,7 @@ namespace App_Checkin.Modelos
             _id = id;
         }
 
-        public double PesoKg { get { return _pesoKg;
+        public double PesoKg { get { return _pesoKg; } }
 
     }
 }

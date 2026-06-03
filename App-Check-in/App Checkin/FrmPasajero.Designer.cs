@@ -48,6 +48,7 @@
             lblDatosPax = new Label();
             btnReiniciar = new Button();
             btnEquipaje = new Button();
+            label9 = new Label();
             grpDatosPax.SuspendLayout();
             SuspendLayout();
             // 
@@ -235,11 +236,22 @@
             btnEquipaje.UseVisualStyleBackColor = true;
             btnEquipaje.Click += btnEquipaje_Click;
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 10.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label9.Location = new Point(516, 215);
+            label9.Name = "label9";
+            label9.Size = new Size(90, 25);
+            label9.TabIndex = 19;
+            label9.Text = "(opcional)";
+            // 
             // FrmPasajero
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(775, 562);
+            Controls.Add(label9);
             Controls.Add(btnEquipaje);
             Controls.Add(btnReiniciar);
             Controls.Add(grpDatosPax);
@@ -291,5 +303,6 @@
         private Label lblDatosPax;
         private Button btnReiniciar;
         private Button btnEquipaje;
+        private Label label9;
     }
 }

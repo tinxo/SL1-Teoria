@@ -53,7 +53,7 @@ namespace App_Checkin
             //_tipoVuelo = tipoVuelo;
         }
 
-        private bool verificarPesoEquipaje(double pesoEquipaje, int nroItem)
+        private void verificarPesoEquipaje(double pesoEquipaje, int nroItem)
         {
             double pesoLimiteNacional = 0.0;
             double pesoLimiteInternacional = 0.0;
@@ -69,56 +69,70 @@ namespace App_Checkin
                 pesoLimiteNacional = 15.0;
                 pesoLimiteInternacional = 23.0;
             }
+
             if ((ticket.TipoVuelo.ToUpper() == "N") && (pesoEquipaje > pesoLimiteNacional))
             {
-                return false;
+                throw new ArgumentOutOfRangeException($"equipaje #{nroItem}");
             }
             else if ((ticket.TipoVuelo.ToUpper() == "I") && (pesoEquipaje > pesoLimiteInternacional))
             {
-                return false;
+                throw new ArgumentOutOfRangeException($"equipaje #{nroItem}");
             }
-            else
-            {
-                return true; // el peso del equipaje es válido para el tipo de vuelo
-            }
-
         }
 
         private void btnVerificar_Click(object sender, EventArgs e)
         {
             double pesoEquipaje1 = (double)this.numPeso1.Value;
-            bool resultado1 = false;
-            if (pesoEquipaje1 > 0.0)
+            try
             {
-                resultado1 = verificarPesoEquipaje(pesoEquipaje1, 1);
-                if (resultado1)
+                if (pesoEquipaje1 > 0.0)
                 {
+                    verificarPesoEquipaje(pesoEquipaje1, 1);
                     this.grpEquipaje1.BackColor = Color.Green;
                     // TODO: este objeto tiene que ir directo a la colección del
                     // pasajero con el que se está operando
                     Equipaje elemento1 = new Equipaje(pesoEquipaje1, "1");
                 }
-            }
-            double pesoEquipaje2 = (double)this.numPeso2.Value;
-            bool resultado2 = false;
-            if (pesoEquipaje2 > 0.0)
+
+                if (grpEquipaje2.Visible)
+                {
+                    double pesoEquipaje2 = (double)this.numPeso2.Value;
+                    if (pesoEquipaje2 > 0.0)
+                    {
+                        verificarPesoEquipaje(pesoEquipaje2, 2);
+                        this.grpEquipaje2.BackColor = Color.Green;
+                        // TODO: este objeto tiene que ir directo a la colección del
+                        // pasajero con el que se está operando
+                        Equipaje elemento1 = new Equipaje(pesoEquipaje1, "2");
+                    }
+                }
+
+                if (grpEquipaje3.Visible)
+                {
+                    double pesoEquipaje3 = (double)this.numPeso3.Value;
+                    if (pesoEquipaje3 > 0.0)
+                    {
+                        verificarPesoEquipaje(pesoEquipaje3, 3);
+                        this.grpEquipaje3.BackColor = Color.Green;
+                        // TODO: este objeto tiene que ir directo a la colección del
+                        // pasajero con el que se está operando
+                        Equipaje elemento1 = new Equipaje(pesoEquipaje1, "3");
+                    }
+                }
+
+            } catch (ArgumentOutOfRangeException ex)
             {
-                resultado2 = verificarPesoEquipaje(pesoEquipaje2, 2);
+                // TODO: mejorar para usar el mensaje que viene vía la exception
+                MessageBox.Show($"El {ex.Message} no cumple con las restricciones de peso.");
             }
-            double pesoEquipaje3 = (double)this.numPeso3.Value;
-            bool resultado3 = false;
-            if (pesoEquipaje3 > 0.0)
-            {
-                resultado3 = verificarPesoEquipaje(pesoEquipaje3, 3);
-            }
+
             // TODO: mejorar la lógica
-            if ((!resultado1 && !resultado2) && (!resultado3))
-            {
-                MessageBox.Show("Pesaje OK");
-            } else
-            {
-                MessageBox.Show("Pesaje con error.");
-            }
+            MessageBox.Show(
+                "Pesaje OK. Todos los items están dentro del límite.",
+                "Éxito",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+                );
 
         }
     }
