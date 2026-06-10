@@ -1,4 +1,5 @@
 ﻿using App_Checkin.Modelos;
+using App_Checkin.Modelos.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -72,11 +73,13 @@ namespace App_Checkin
 
             if ((ticket.TipoVuelo.ToUpper() == "N") && (pesoEquipaje > pesoLimiteNacional))
             {
-                throw new ArgumentOutOfRangeException($"equipaje #{nroItem}");
+                //throw new ArgumentOutOfRangeException($"equipaje #{nroItem}");
+                throw new PesoExcedidoException(pesoEquipaje, pesoLimiteNacional, nroItem);
             }
             else if ((ticket.TipoVuelo.ToUpper() == "I") && (pesoEquipaje > pesoLimiteInternacional))
             {
-                throw new ArgumentOutOfRangeException($"equipaje #{nroItem}");
+                //throw new ArgumentOutOfRangeException($"equipaje #{nroItem}");
+                throw new PesoExcedidoException(pesoEquipaje, pesoLimiteInternacional, nroItem);
             }
         }
 
@@ -120,10 +123,11 @@ namespace App_Checkin
                     }
                 }
 
-            } catch (ArgumentOutOfRangeException ex)
+            } catch (PesoExcedidoException ex)
             {
                 // TODO: mejorar para usar el mensaje que viene vía la exception
-                MessageBox.Show($"El {ex.Message} no cumple con las restricciones de peso.");
+                MessageBox.Show($"Error: {ex.Message}. Revise los valores e intente nuevamente.");
+                return;
             }
 
             // TODO: mejorar la lógica

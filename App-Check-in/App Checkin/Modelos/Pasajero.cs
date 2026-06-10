@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using App_Checkin.Modelos.Exceptions
 
 namespace App_Checkin.Modelos
 {
@@ -20,6 +21,13 @@ namespace App_Checkin.Modelos
             string documento, 
             string pasajeroFrecuente)
         {
+            if (string.IsNullOrWhiteSpace(nombre))
+            {
+                // lanzar exception para datos invalidos
+                throw new DatosInvalidosException(
+                    "Nombre", "El nombre no puede estar vacío."
+                    );
+            }
             _nombre = nombre;
             _apellido = apellido;
             _documento = documento;
