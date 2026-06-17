@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using App_Checkin.Modelos.Exceptions
+using App_Checkin.Modelos.Exceptions;
 
 namespace App_Checkin.Modelos
 {

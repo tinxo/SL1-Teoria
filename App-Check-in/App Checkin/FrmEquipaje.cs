@@ -13,35 +13,18 @@ namespace App_Checkin
     public partial class FrmEquipaje : Form
     {
         //private String _tipoVuelo = String.Empty;
-        private Pasaje ticket;
+        private CheckinService servicio = new CheckinService();
         public FrmEquipaje()
         {
             InitializeComponent();
         }
 
-        private int obtenerCantidadEquipaje(string tipoTarifa)
-        {
-            int cantidadItems;
-            if (tipoTarifa.ToUpper() == "P" || tipoTarifa.ToUpper() == "B")
-            {
-                cantidadItems = 1;
-            }
-            else if (tipoTarifa.ToUpper() == "F")
-            {
-                cantidadItems = 2;
-            }
-            else
-            {
-                cantidadItems = 3;
-            }
-            return cantidadItems;
-        }
+        
 
-        public void configurarFormulario(Pasaje unTicket)
+        public void configurarFormulario()
             // TODO: ENVIAR al pasajero para poder después asignarle cada item de equipaje
         {
-            ticket = unTicket;
-            int cantidadEquipaje = obtenerCantidadEquipaje(ticket.TipoTarifa);
+            int cantidadEquipaje = servicio.obtenerCantidadEquipaje(CheckinSession.Pasaje.TipoTarifa);
             if (cantidadEquipaje == 1)
             {
                 this.grpEquipaje2.Visible = false;
@@ -51,50 +34,24 @@ namespace App_Checkin
             {
                 this.grpEquipaje3.Visible = false;
             }
-            //_tipoVuelo = tipoVuelo;
         }
 
-        private void verificarPesoEquipaje(double pesoEquipaje, int nroItem)
-        {
-            double pesoLimiteNacional = 0.0;
-            double pesoLimiteInternacional = 0.0;
-            if (nroItem == 1)
-            {
-                // solo el primer item tiene estas restricciones de peso
-                pesoLimiteNacional = 8.0;
-                pesoLimiteInternacional = 10.0;
-            }
-            else
-            {
-                // item despachado en bodega, tiene estas restricciones de peso
-                pesoLimiteNacional = 15.0;
-                pesoLimiteInternacional = 23.0;
-            }
-
-            if ((ticket.TipoVuelo.ToUpper() == "N") && (pesoEquipaje > pesoLimiteNacional))
-            {
-                //throw new ArgumentOutOfRangeException($"equipaje #{nroItem}");
-                throw new PesoExcedidoException(pesoEquipaje, pesoLimiteNacional, nroItem);
-            }
-            else if ((ticket.TipoVuelo.ToUpper() == "I") && (pesoEquipaje > pesoLimiteInternacional))
-            {
-                //throw new ArgumentOutOfRangeException($"equipaje #{nroItem}");
-                throw new PesoExcedidoException(pesoEquipaje, pesoLimiteInternacional, nroItem);
-            }
-        }
+        
 
         private void btnVerificar_Click(object sender, EventArgs e)
         {
             double pesoEquipaje1 = (double)this.numPeso1.Value;
+            string tipoVuelo = CheckinSession.Pasaje.TipoVuelo;
             try
             {
                 if (pesoEquipaje1 > 0.0)
                 {
-                    verificarPesoEquipaje(pesoEquipaje1, 1);
+                    servicio.verificarPesoEquipaje(pesoEquipaje1, 1, tipoVuelo);
                     this.grpEquipaje1.BackColor = Color.Green;
                     // TODO: este objeto tiene que ir directo a la colección del
                     // pasajero con el que se está operando
                     Equipaje elemento1 = new Equipaje(pesoEquipaje1, "1");
+                    servicio.AgregarEquipaje(elemento1);
                 }
 
                 if (grpEquipaje2.Visible)
@@ -102,11 +59,12 @@ namespace App_Checkin
                     double pesoEquipaje2 = (double)this.numPeso2.Value;
                     if (pesoEquipaje2 > 0.0)
                     {
-                        verificarPesoEquipaje(pesoEquipaje2, 2);
+                        servicio.verificarPesoEquipaje(pesoEquipaje2, 2, tipoVuelo);
                         this.grpEquipaje2.BackColor = Color.Green;
                         // TODO: este objeto tiene que ir directo a la colección del
                         // pasajero con el que se está operando
-                        Equipaje elemento1 = new Equipaje(pesoEquipaje1, "2");
+                        Equipaje elemento2 = new Equipaje(pesoEquipaje2, "2");
+                        servicio.AgregarEquipaje(elemento2);
                     }
                 }
 
@@ -115,11 +73,12 @@ namespace App_Checkin
                     double pesoEquipaje3 = (double)this.numPeso3.Value;
                     if (pesoEquipaje3 > 0.0)
                     {
-                        verificarPesoEquipaje(pesoEquipaje3, 3);
+                        servicio.verificarPesoEquipaje(pesoEquipaje3, 3, tipoVuelo);
                         this.grpEquipaje3.BackColor = Color.Green;
                         // TODO: este objeto tiene que ir directo a la colección del
                         // pasajero con el que se está operando
-                        Equipaje elemento1 = new Equipaje(pesoEquipaje1, "3");
+                        Equipaje elemento3 = new Equipaje(pesoEquipaje3, "3");
+                        servicio.AgregarEquipaje(elemento3);
                     }
                 }
 

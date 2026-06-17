@@ -1,16 +1,16 @@
 using App_Checkin.Modelos;
+using App_Checkin.Modelos.Exceptions;
 
 namespace App_Checkin
 {
     public partial class FrmPasajero : Form
     {
-        // TODO: mover acá las variables
-        Pasajero unPax;
-        Pasaje ticket;
+        CheckinService servicio = new CheckinService();
 
         public FrmPasajero()
         {
             InitializeComponent();
+            
         }
 
         private void evetoClickBtnProcesar(object sender, EventArgs e)
@@ -24,14 +24,23 @@ namespace App_Checkin
                 // TODO: falta algo de feedback visual para indicar qué campo tiene problemas
                 return;
             }
+            try
+            {
+                // Se obtienen los datos del pasajero
+                /*unPax = new Pasajero(
+                    txtNombre.Text,
+                    txtApellido.Text,
+                    txtDocumento.Text,
+                    txtPaxFrecuente.Text
+                );*/
+                servicio.RegistrarPasajero(txtNombre.Text, txtApellido.Text, txtDocumento.Text, txtPaxFrecuente.Text);
+            }
+            catch (DatosInvalidosException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             
-            // Se obtienen los datos del pasajero
-            unPax = new Pasajero(
-                txtNombre.Text,
-                txtApellido.Text,
-                txtDocumento.Text,
-                txtPaxFrecuente.Text
-            );
             // Usamos la clase Pasajeros para guardar los datos
 
             string tipoVuelo; // "N" o "I"
@@ -51,7 +60,7 @@ namespace App_Checkin
                 tipoTarifa = cbxTipoTarifa.SelectedItem.ToString();
             }
             string nroVuelo = "AR1766";
-            ticket = new Pasaje(tipoVuelo, tipoTarifa, nroVuelo);
+            servicio.RegistrarPasaje(tipoVuelo, tipoTarifa, nroVuelo);
 
             // Informar datos cargados
             /*MessageBox.Show($"Datos del pasajero: +" +
@@ -62,8 +71,8 @@ namespace App_Checkin
             // Se pasa a visible el área para mostrar los resultados
             this.grpDatosPax.Visible = true;
             // Se cargan los resultados (datos del pasajero)
-            this.lblDatosPax.Text = $"{unPax.Apellido}, {unPax.Nombre}:" +
-                $"\n DNI: {unPax.Documento} - NPxFrecuente: {unPax.PasajeroFrecuente}" +
+            this.lblDatosPax.Text = $"{CheckinSession.Pasajero.Apellido}, {CheckinSession.Pasajero.Nombre}:" +
+                $"\n DNI: {CheckinSession.Pasajero.Documento} - NPxFrecuente: {CheckinSession.Pasajero.PasajeroFrecuente}" +
                 $"\n Vuelo: {tipoVuelo} con la tarifa {tipoTarifa}";
         }
 
@@ -97,7 +106,7 @@ namespace App_Checkin
             {
                 tipoTarifa = cbxTipoTarifa.SelectedItem.ToString();
             }**/
-            if ((ticket.TipoTarifa == String.Empty) || (ticket.TipoVuelo == String.Empty)) {
+            if ((CheckinSession.Pasaje.TipoTarifa == String.Empty) || (CheckinSession.Pasaje.TipoVuelo == String.Empty)) {
                 // No tiene que abrir el formulario
                 MessageBox.Show("Para cargar el equipaje se requiere el tipo de vuelo y tipo de tarifa.",
                     "Error",
@@ -106,7 +115,7 @@ namespace App_Checkin
             } else
             {
                 FrmEquipaje frmEquipaje = new FrmEquipaje();
-                frmEquipaje.configurarFormulario(ticket);
+                frmEquipaje.configurarFormulario();
                 frmEquipaje.ShowDialog();
             }
             
