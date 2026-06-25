@@ -1,0 +1,153 @@
+@page "/equipaje"
+@rendermode InteractiveServer
+@using Web_Check_in.Modelos.Exceptions
+@inject NavigationManager Navegacion
+
+
+<h3>Control de pesos del equipaje</h3>
+
+@* Si no hay pasaje registrado, no mostramos nada útil *@
+@if (CheckinSession.Pasajero == null)
+{
+    <div style="color: red;">No se ha registrado un pasajero. Por favor, complete el check-in de pasajeros primero.</div>
+}
+else
+{
+    <div>
+        <p>Nombre del pasajero: @CheckinSession.Pasajero.Nombre @CheckinSession.Pasajero.Apellido</p>
+        <p>Documento: @CheckinSession.Pasajero.Documento</p>
+         
+         @* Item 1 — siempre visible *@
+        <div>
+            <h4>Equipaje 1</h4>
+            <input type="number" @bind="pesoItem1" min="0" step="0.1" />
+            @if (item1Ok)
+            {
+                <span style="color:green;">✓ OK</span>
+            }
+        </div>
+        @* Item 2 — equivalente a grpEquipaje2.Visible *@
+        @if (cantidadEquipaje >= 2)
+        {
+            <div>
+                <h4>Equipaje 2</h4>
+                <input type="number" @bind="pesoItem2" min="0" step="0.1" />
+                @if (item2Ok)
+                {
+                    <span style="color:green;">✓ OK</span>
+                }
+            </div>
+        }
+
+        @* Item 3 — equivalente a grpEquipaje3.Visible *@
+        @if (cantidadEquipaje >= 3)
+        {
+            <div>
+                <h4>Equipaje 3</h4>
+                <input type="number" @bind="pesoItem3" min="0" step="0.1" />
+                @if (item3Ok)
+                {
+                    <span style="color:green;">✓ OK</span>
+                }
+            </div>
+    }
+
+        <button @onclick="Verificar">Verificar peso</button>
+        <button @onclick="VolverAPasajero">Volver al Pasajero</button>
+    </div>
+
+    @* Equivalente al MessageBox.Show de error *@
+    @if (mensajeError != string.Empty)
+    {
+        <div style="color:red;">
+            <p>@mensajeError</p>
+        </div>
+    }
+
+    @* Equivalente al MessageBox.Show de éxito *@
+    @if (mostrarExito)
+    {
+        <div style="color:green;">
+            <p>Pesaje OK. Todos los items están dentro del límite.</p>
+        </div>
+    }
+}
+
+@code 
+{
+    // Se calcula al inicializar el componente, equivalente a configurarFormulario()
+    private int cantidadEquipaje = 0;
+
+    // Clase de servicio para manejar la lógica de negocio del check-in
+    private CheckinService service = new CheckinService();
+
+    // Variables para manejar el estado de los items de equipaje
+    private double pesoItem1 = 0;
+    private double pesoItem2 = 0;
+    private double pesoItem3 = 0;
+
+    // Equivalente a grpEquipaje1.BackColor = Color.Green
+    private bool item1Ok = false;
+    private bool item2Ok = false;
+    private bool item3Ok = false;
+
+    private bool mostrarExito = false;
+    private string mensajeError = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        if (CheckinSession.Pasaje != null)
+        {
+            cantidadEquipaje = service.obtenerCantidadEquipaje(CheckinSession.Pasaje.TipoTarifa);
+        }
+    }
+
+
+    private void Verificar()
+    {
+       mensajeError = string.Empty;
+        mostrarExito = false;
+        item1Ok = false;
+        item2Ok = false;
+        item3Ok = false;
+
+        string tipoVuelo = CheckinSession.Pasaje!.TipoVuelo;
+
+        try
+        {
+            if (pesoItem1 > 0)
+            {
+                service.verificarPesoEquipaje(pesoItem1, 1, tipoVuelo);
+                item1Ok = true;
+                CheckinSession.Pasajero?.agregarEquipaje(new Modelos.Equipaje(pesoItem1, "1"));
+            }
+
+            if (cantidadEquipaje >= 2 && pesoItem2 > 0)
+            {
+                service.verificarPesoEquipaje(pesoItem2, 2, tipoVuelo);
+                item2Ok = true;
+                CheckinSession.Pasajero?.agregarEquipaje(new Modelos.Equipaje(pesoItem2, "2"));
+            }
+
+            if (cantidadEquipaje >= 3 && pesoItem3 > 0)
+            {
+                service.verificarPesoEquipaje(pesoItem3, 3, tipoVuelo);
+                item3Ok = true;
+                CheckinSession.Pasajero?.agregarEquipaje(new Modelos.Equipaje(pesoItem3, "3"));
+            }
+
+            mostrarExito = true;
+        }
+        catch (PesoExcedidoException ex)
+        {
+            mensajeError = $"Error: {ex.Message} Revise los valores e intente nuevamente.";
+        }
+    }
+
+    private void VolverAPasajero()
+    {
+        Navegacion.NavigateTo("/pasajero");
+    }
+
+
+}

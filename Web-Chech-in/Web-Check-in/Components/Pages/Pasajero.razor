@@ -1,0 +1,147 @@
+@page "/pasajero"
+@rendermode InteractiveServer
+@using Web_Check_in.Modelos.Exceptions
+@inject NavigationManager NavigationManager
+
+<h3>Check-In de Pasajeros</h3>
+
+<div>
+    <!-- Contenido de la página de registro de pasajeros -->
+    <form @onsubmit="Procesar">
+        <label>Nombre:</label>
+        <input type="text" @bind="nombre" />
+        <br />
+        <label>Apellido:</label>
+        <input type="text" @bind="apellido" />
+        <br />
+        <label>Documento:</label>
+        <input type="text" @bind="documento" />
+        <br />
+        <label>Pax Frecuente:</label>
+        <input type="text" @bind="paxFrecuente" />
+        <br />
+
+        <label>Tipo de vuelo:
+        <input type="radio" name="tipoVuelo" value="N"
+            @onchange="() => tipoVuelo = 'N'.ToString()" /> Nacional
+        </label>
+        <label>
+        <input type="radio" name="tipoVuelo" value="I"
+            @onchange="() => tipoVuelo = 'I'.ToString()" /> Internacional
+        </label>
+        <br />
+
+        <label>Tipo de tarifa:</label>
+        <select @bind="tipoTarifa">
+            <option value="">Seleccione una opción</option>
+            <option value="P">Promocional</option>
+            <option value="E">Economy</option>
+            <option value="F">Flex</option>
+            <option value="PE">Premium Economy</option>
+        </select>
+        <br />
+        <br />
+        <button type="submit">Procesar</button>
+    </form>
+
+    <button @onclick="IrAEquipaje">Cargar equipaje</button>
+</div>
+
+@if (!string.IsNullOrEmpty(mensajeError))
+{
+    <div style="color: red;">@mensajeError</div>
+}
+
+@if (mostrarDatos)
+{
+    <div style="color: green;">@datosPax</div>
+}
+
+
+
+@code {
+    // Varialbes para guardar los datos del pasajero
+    private string nombre = string.Empty;
+    private string apellido = string.Empty;
+    private string documento = string.Empty;
+    private string paxFrecuente = string.Empty;
+    private string tipoVuelo = string.Empty;
+    private string tipoTarifa = string.Empty;
+
+    // Servicio para manejar el check-in
+    private CheckinService checkinService = new CheckinService();
+
+    // Variables para manejar mensajes de error y mostrar datos
+    private string mensajeError = string.Empty;
+    private string datosPax = string.Empty;
+    private bool mostrarDatos = false;
+
+    // Método para cuando se procesa el form
+    private void Procesar() 
+    {
+        mensajeError = string.Empty;
+        if (nombre == string.Empty || apellido == string.Empty || documento == string.Empty)
+        {
+            mensajeError = "Hay campos obligatorios no cargados (nombre, apellido y/o número de documento).";
+            return;
+        }
+
+        // Validar que se haya seleccionado un tipo de vuelo y un tipo de tarifa
+        if (tipoVuelo == string.Empty)
+        {
+            mensajeError = "Debe seleccionar el tipo de vuelo.";
+            return;
+        }
+
+        if (tipoTarifa == string.Empty)
+        {
+            mensajeError = "Debe seleccionar el tipo de tarifa.";
+            return;
+        }
+
+        try
+        {
+            checkinService.RegistrarPasajero(nombre, apellido, documento, paxFrecuente);
+            checkinService.RegistrarPasaje(tipoVuelo, tipoTarifa, "AR1766");
+            
+            // Mostrar los datos del pasajero registrado
+            datosPax = $"Pasajero registrado: {CheckinSession.Pasajero.Apellido}, {CheckinSession.Pasajero.Nombre}:" +
+                $"\n DNI: {CheckinSession.Pasajero.Documento}" +
+                $"\n Vuelo: {tipoVuelo} con tarifa {tipoTarifa}";
+            
+            mostrarDatos = true;
+        }
+        catch (DatosInvalidosException ex)
+        {
+            mensajeError = $"Error al registrar el pasajero. {ex.Message}";
+        }
+    }
+
+   private void Reiniciar()
+    {
+        nombre = string.Empty;
+        apellido = string.Empty;
+        documento = string.Empty;
+        paxFrecuente = string.Empty;
+        tipoVuelo = string.Empty;
+        tipoTarifa = string.Empty;
+        mostrarDatos = false;
+        datosPax = string.Empty;
+        mensajeError = string.Empty;
+        CheckinSession.Pasajero = null;
+        CheckinSession.Pasaje = null;
+    }
+
+
+    private void IrAEquipaje()
+    {
+        if (CheckinSession.Pasajero == null)
+        {
+            mensajeError = "No se ha registrado un pasajero. Por favor, complete el check-in de pasajeros primero.";
+            return;
+        }
+
+        NavigationManager.NavigateTo("/equipaje");
+    }
+
+}
